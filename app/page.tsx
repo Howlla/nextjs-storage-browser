@@ -2,7 +2,7 @@
 import React from "react";
 import { Amplify } from "aws-amplify";
 import { signOut } from "aws-amplify/auth";
-
+import { useRouter } from 'next/navigation';
 import { Button, withAuthenticator } from "@aws-amplify/ui-react";
 import {
   createStorageBrowser,
@@ -17,6 +17,7 @@ import config from "../amplify_outputs.json";
 Amplify.configure(config);
 
 function Example() {
+  const router = useRouter();
   const { StorageBrowser } = createStorageBrowser({
     elements: elementsDefault,
     config: createAmplifyAuthAdapter({
@@ -28,10 +29,12 @@ function Example() {
     }),
   });
 
+
   return (
     <>
       <Button
         marginBlockEnd="xl"
+        marginRight="small"
         size="small"
         onClick={() => {
           signOut();
@@ -39,6 +42,12 @@ function Example() {
       >
         Sign Out
       </Button>
+      <Button
+          size="small"
+          onClick={() => router.push('/form')}
+        >
+          Go to Form
+        </Button>
       <StorageBrowser />
     </>
   );
