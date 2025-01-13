@@ -7,7 +7,6 @@ import { Button, withAuthenticator } from "@aws-amplify/ui-react";
 import {
   createStorageBrowser,
   createAmplifyAuthAdapter,
-  elementsDefault,
 } from "@aws-amplify/ui-react-storage/browser";
 import "@aws-amplify/ui-react-storage/styles.css";
 import "@aws-amplify/ui-react-storage/storage-browser-styles.css";
@@ -19,14 +18,7 @@ Amplify.configure(config);
 function Example() {
   const router = useRouter();
   const { StorageBrowser } = createStorageBrowser({
-    elements: elementsDefault,
-    config: createAmplifyAuthAdapter({
-      options: {
-        defaultPrefixes: [
-          "2025/",
-        ],
-      },
-    }),
+    config: createAmplifyAuthAdapter(),
   });
 
 
@@ -54,3 +46,4 @@ function Example() {
 }
 
 export default withAuthenticator(Example);
+
