@@ -3,8 +3,6 @@ import { defineStorage } from "@aws-amplify/backend";
 export const storage = defineStorage({
   name: "storage",
   access: (allow: any) => ({
-    '2025/*': [
-      allow.entity('identity').to(['read', 'write', 'delete'])
-    ]
+    '2025/*': [allow.authenticated.to(['read', 'write', 'delete'])],
   })
 });
